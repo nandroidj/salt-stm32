@@ -56,11 +56,15 @@ include_directories(
 
 2. Comenzar con la primera demo llamada [PlaintextMQTTExample](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Plain_Text/DemoTasks/PlaintextMQTTExample.c) siguiendo la [documentación](https://www.freertos.org/mqtt/basic-mqtt-example.html)
 
-3. Conectar el cliente montado en el kit de desarrollo con el cluster provisto por [Hive MQ](https://console.hivemq.cloud/).
+3. Conectar el cliente montado en el kit de desarrollo con el broker del cluster provisto por [Hive MQ](https://console.hivemq.cloud/).
 
+4. Analizar la relevancia de las otras demos propuestas y basarse en alguna/s de ella/s para desarrollar el cliente MQTT de interés. 
 
+5. Probar la publicación del cliente MQTT (NUCLEO F429ZI) con el broker desarrollado en el backend.
 
+6. Probar la suscripción del cliente MQTT (NUCLEO F429ZI) con el broker desarrollado en el backend.
 
+7. Analizar si es necesario abstraer el client MQTT de FreeRTOS ([v3.1.1](https://www.freertos.org/mqtt/index.html)) en base a las mejoras propuestas por la última versión del protocolo [MQTT 5.0](https://docs.oasis-open.org/mqtt/mqtt/v5.0/).
 
 
 ## Referencias
