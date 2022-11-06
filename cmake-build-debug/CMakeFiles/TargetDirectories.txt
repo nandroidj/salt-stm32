@@ -1,0 +1,3 @@
+/Users/nandroid/Desktop/salt/technical/salt-stm32/cmake-build-debug/CMakeFiles/salt-stm32.elf.dir
+/Users/nandroid/Desktop/salt/technical/salt-stm32/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/nandroid/Desktop/salt/technical/salt-stm32/cmake-build-debug/CMakeFiles/rebuild_cache.dir
