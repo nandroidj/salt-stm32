@@ -69,6 +69,9 @@ include_directories(
 
 - [Build error STM32 HAL when FreeRTOS is enabled](https://youtrack.jetbrains.com/issue/CPP-18629/Build-error-STM32-HAL-when-FreeRTOS-is-enabled)
 
+- [Artículo con LwIP (Lightweight TCP/IP)](https://m.blog.naver.com/eziya76/221938551688)
+
+
 ### Tutoriales
 
 - [CLion for embedded development](https://www.jetbrains.com/help/clion/embedded-overview.html)
@@ -79,7 +82,7 @@ include_directories(
 
 - [openocd installation for MacOS](https://formulae.brew.sh/formula/open-ocd)
 
-
+- [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
 
 ### Libros
 
@@ -89,4 +92,81 @@ include_directories(
 - [Effective C](https://nostarch.com/Effective_C)
 
 - [The C Programming Language](https://fr.wikipedia.org/wiki/The_C_Programming_Language)
+
+
+### Videos
+
+- [ARM Development](https://www.youtube.com/playlist?list=PLfByYz-5078aJuy57IaiLleK4M12BZwup)
+
+
+### Tecnologías utilizadas
+
+#### STM32
+
++ [Getting Started with STM32 - Introduction to FreeRTOS](https://www.digikey.com/en/maker/projects/getting-started-with-stm32-introduction-to-freertos/ad275395687e4d85935351e16ec575b1#:~:text=FreeRTOS%20is%20a%20free%20and,provides%20regular%20maintenance%20and%20support.)
+
++ [Hands-on: Start New STM32 Project](https://github.com/ethanhuanginst/STM32CubeIDE-Workshop-2019/tree/master/hands-on/01_Start)
+
++ [Getting Started with STM32 and Nucleo](https://youtube.com/playlist?list=PLEBQazB0HUyRYuzfi4clXsKUSgorErmBv)
+
++ [Introduction to RTOS](https://youtube.com/playlist?list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz)
+
+
++ [FreeRTOS on STM32](https://youtube.com/playlist?list=PLnMKNibPkDnFeFV4eBfDQ9e5IrGL_dx1Q)
+
+
+#### FreeRTOS
+
+
+- [TCP Stack demo](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/TCP_Networking_Tutorial_Adding_Source_Files.html)
+
+- [STM32CubeMX - With Example Work-flow](https://www.freertos.org/FreeRTOS-Plus/BSP_Solutions/ST/STM32CubeMX.html)
+
+- [RTOS CORTEX M4](https://www.freertos.org/RTOS-Cortex-M3-M4.html)
+
+#### CMSIS-RTOS2
+
+- [Pagina principal](https://www.keil.com/pack/doc/CMSIS/RTOS2/html/rtos_api2.html)
+
+
+#### arm based mcu setup with gcc-arm + neovim + macOS
+
+- https://chmanie.com/post/2020/07/18/debugging-arm-based-microcontrollers-in-neovim-with-gdb/
+
+- https://github.com/glegrain/STM32-with-macOS
+
+
+#### STM32 NUCLEO
+
+- [getting started with STM32 Nucleo](https://www.open-electronics.org/lets-code-with-stm32-nucleo/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
