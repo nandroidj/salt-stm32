@@ -66,6 +66,10 @@ include_directories(
 
 7. Analizar si es necesario abstraer el client MQTT de FreeRTOS ([v3.1.1](https://www.freertos.org/mqtt/index.html)) en base a las mejoras propuestas por la última versión del protocolo [MQTT 5.0](https://docs.oasis-open.org/mqtt/mqtt/v5.0/).
 
++ [Differences between 3.1.1 and 5.0](https://github.com/mqtt/mqtt.org/wiki/Differences-between-3.1.1-and-5.0)
+
++ FreeRTOS esta linkeado con el producto [wolfMQTT client library](https://www.wolfssl.com/products/wolfmqtt/) de wolfssl ?
+
 
 ## Referencias
 
