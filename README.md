@@ -48,11 +48,16 @@ include_directories(
 4. En primera instancia, definir la etiqueta `#define MQTT_DO_NOT_USE_CUSTOM_CONFIG 1` en el archivo `core_mqtt.h` tal que temporalmente no sea necesario definir el encabezado `core_mqtt_config.h` 
 
 
+## PlaintextMQTTExample
+
+1. **[IMPORTANTE]** Se modifica el CMake **generator** de *Ninja* a *Unix Makefiles*. 
+
+Venía realizándose con *Ninja* hasta que se lanzó el comando `cmake --check-system-vars` y alteró el generador viendo por defecto a *Unix Makefiles*. En consecuencia, en Settings -> Build, Exec, Deployment -> CMake se modificó el campo *Generator* por *Unix Makefiles*.
 
 
 ## Próximos pasos
 
-1. Extraer lo necesario del repositorio [FreeRTOS](https://github.com/FreeRTOS/FreeRTOS) para el uso *standalone* del protocolo MQTT en la NUCLE F429ZI
+1. Extraer lo necesario del repositorio [FreeRTOS](https://github.com/FreeRTOS/FreeRTOS) para el uso *standalone* del protocolo MQTT en la NUCLEO F429ZI
 
 2. Comenzar con la primera demo llamada [PlaintextMQTTExample](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Plain_Text/DemoTasks/PlaintextMQTTExample.c) siguiendo la [documentación](https://www.freertos.org/mqtt/basic-mqtt-example.html)
 

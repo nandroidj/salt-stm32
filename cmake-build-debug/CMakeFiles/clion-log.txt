@@ -1,5 +1,5 @@
-"/Users/nandroid/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/nandroid/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/nandroid/Desktop/salt/technical/salt-stm32 -B /Users/nandroid/Desktop/salt/technical/salt-stm32/cmake-build-debug
+"/Users/nandroid/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/nandroid/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/nandroid/Desktop/salt/technical/salt-stm32 -B /Users/nandroid/Desktop/salt/technical/salt-stm32
 -- Minimal optimization, debug info included
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/nandroid/Desktop/salt/technical/salt-stm32/cmake-build-debug
+-- Build files have been written to: /Users/nandroid/Desktop/salt/technical/salt-stm32

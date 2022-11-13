@@ -15,11 +15,24 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # project settings
 project(salt-stm32 C CXX ASM)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_STANDARD 11)
+# set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 90)
 
 
-#   DESCOMENTAOS
+######################################################
+## tcp/ip
+# Allow the project to be organized into folders.
+set_property( GLOBAL PROPERTY USE_FOLDERS ON )
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+set( MODULE_ROOT_DIR ./ )
+
+set( KERNEL_DIRECTORY /Middlewares/Third_Party/FreeRTOS/Source/ )
+
+######################################################
+
+
+
 #Uncomment for hardware floating point
 add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
 add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
@@ -37,18 +50,11 @@ add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-le
 # Enable assembler files preprocessing
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
 
-######################################
 
+# coreMqtt
 # Include filepaths for source and include.
 include( coreMQTT/mqttFilePaths.cmake )
 
-include_directories(
-        "coreMQTT/source/include"
-        "coreMQTT/source/interface"
-)
-
-
-######################################
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     message(STATUS "Maximum optimization for speed")
@@ -64,11 +70,38 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc Drivers/STM32F4xx_HAL_Driver/Inc Drivers/STM32F4xx_HAL_Driver/Inc/Legacy Middlewares/Third_Party/FreeRTOS/Source/include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F Drivers/CMSIS/Device/ST/STM32F4xx/Include Drivers/CMSIS/Include)
+include_directories(
+        Core/Inc
+        Drivers/STM32F4xx_HAL_Driver/Inc
+        Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+        Middlewares/Third_Party/FreeRTOS/Source/include
+        Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
+        Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
+        Drivers/CMSIS/Device/ST/STM32F4xx/Include
+        Drivers/CMSIS/Include
+
+        coreMQTT/source/include
+        coreMQTT/source/interface
+
+        coreMQTT/demo/
+        FreeRTOS-Plus-TCP/source/include
+
+        Utilities/logging
+        Utilities/backoff_algorithm/source/include
+        network_transport/using_plaintext
+)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx)
 
-file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*")
+file(
+        GLOB_RECURSE SOURCES
+        "Core/*.*"
+        "Middlewares/*.*"
+        "Drivers/*.*"
+        "coreMQTT/*.*"
+        "Utilities/*.*"
+        "FreeRTOS-Plus-TCP/*.*"
+)
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F429ZITX_FLASH.ld)
 
