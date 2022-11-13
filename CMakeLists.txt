@@ -82,13 +82,28 @@ include_directories(
 
         coreMQTT/source/include
         coreMQTT/source/interface
+        coreMQTT/test/cbmc/include
 
         coreMQTT/demo/
+
+
         FreeRTOS-Plus-TCP/source/include
+        FreeRTOS-Plus-TCP/test/Coverity/ConfigFiles
+        FreeRTOS-Plus-TCP/test/FreeRTOS-Kernel/portable/GCC/ARM_CM4F
+        FreeRTOS-Plus-TCP/tools/CMock/vendor/unity/src
 
         Utilities/logging
         Utilities/backoff_algorithm/source/include
+
+
+        FreeRTOS-Cellular-Interface/source/include
+        FreeRTOS-Cellular-Interface/source/include/common
+        FreeRTOS-Cellular-Interface/source/include/private
+        FreeRTOS-Cellular-Interface/source/interface
+        FreeRTOS-Cellular-Interface/test/unit-test
+
         network_transport/using_plaintext
+        network_transport/sockets_wrapper/cellular
 )
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx)
@@ -98,9 +113,20 @@ file(
         "Core/*.*"
         "Middlewares/*.*"
         "Drivers/*.*"
-        "coreMQTT/*.*"
-        "Utilities/*.*"
-        "FreeRTOS-Plus-TCP/*.*"
+
+        "coreMQTT/source/*.c"
+
+        "Utilities/backoff_algorithm/source/backoff_algorithm.c"
+        "Utilities/backoff_algorithm/test/unit-test/Unity/examples/example_1/src/ProductionCode2.h"
+
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_Sockets.c"
+        "FreeRTOS-Plus-TCP/tools/CMock/vendor/unity/extras/fixture/src/unity_fixture.h"
+
+        "network_transport/using_plaintext/using_plaintext.c"
+        "network_transport/sockets_wrapper/cellular/sockets_wrapper.c"
+
+        # "FreeRTOS-Cellular-Interface/source/*.*"
+
 )
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F429ZITX_FLASH.ld)

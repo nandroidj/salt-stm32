@@ -28,6 +28,7 @@
  */
 #include "core_mqtt.h"
 #include "mqtt_cbmc_state.h"
+#include "demo_config.h"
 
 void harness()
 {

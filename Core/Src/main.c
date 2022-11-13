@@ -30,6 +30,28 @@
 #include "using_plaintext.h"
 #include "logging_stack.h"
 
+
+/*-----------------------------------------------------------*/
+/* Used by the pseudo random number generator. */
+static UBaseType_t ulNextRand;
+
+UBaseType_t uxRand( void )
+{
+    const uint32_t ulMultiplier = 0x015a4e35UL, ulIncrement = 1UL;
+
+    /*
+     * Utility function to generate a pseudo random number.
+     *
+     * !!!NOTE!!!
+     * This is not a secure method of generating a random number.  Production
+     * devices should use a True Random Number Generator (TRNG).
+     */
+    ulNextRand = ( ulMultiplier * ulNextRand ) + ulIncrement;
+    return( ( int ) ( ulNextRand >> 16UL ) & 0x7fffUL );
+}
+/*-----------------------------------------------------------*/
+
+
 /*
  * Demo for showing use of the managed MQTT API.
  *
@@ -535,7 +557,7 @@ static PlaintextTransportStatus_t prvConnectToServerWithBackoffRetries( NetworkC
 
             if( xBackoffAlgStatus == BackoffAlgorithmRetriesExhausted )
             {
-                LogError( ( "Connection to the broker failed, all attempts exhausted." ) );
+                FreeRTOS_printf( ( "Connection to the broker failed, all attempts exhausted." ) );
             }
             else if( xBackoffAlgStatus == BackoffAlgorithmSuccess )
             {
@@ -702,7 +724,7 @@ static void prvMQTTSubscribeWithBackoffRetries( MQTTContext_t * pxMQTTContext )
 
                 if( xBackoffAlgStatus == BackoffAlgorithmRetriesExhausted )
                 {
-                    LogError( ( "Server rejected subscription request. All retry attempts have exhausted. Topic=%s",
+                    FreeRTOS_printf( ( "Server rejected subscription request. All retry attempts have exhausted. Topic=%s",
                             xTopicFilterContext[ ulTopicCount ].pcTopicFilter ) );
                 }
                 else if( xBackoffAlgStatus == BackoffAlgorithmSuccess )

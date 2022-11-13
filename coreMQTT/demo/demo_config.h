@@ -111,4 +111,7 @@ extern void vLoggingPrintf( const char * pcFormatString,
 #define democonfigMQTT_BROKER_PORT ( 8883 )
 
 
+#define SUBSCRIPTION_COUNT_MAX    2U
+
+
 #endif /* DEMO_CONFIG_H */
