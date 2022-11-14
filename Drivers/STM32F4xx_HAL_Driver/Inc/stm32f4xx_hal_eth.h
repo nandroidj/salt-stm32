@@ -26,7 +26,8 @@ extern "C" {
 
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal_def.h"
+// #include "stm32f4xx_hal_def.h"
+#include "stm32f4xx.h"
 
 #if defined(ETH)
 
@@ -68,7 +69,26 @@ typedef struct
   __IO uint32_t DESC7;
   uint32_t BackupAddr0; /* used to store rx buffer 1 address */
   uint32_t BackupAddr1; /* used to store rx buffer 2 address */
+
+    __IO uint32_t Status;         /*!< Status */
+
+    uint32_t ControlBufferSize;   /*!< Control and Buffer1, Buffer2 lengths */
+
+    uint32_t Buffer1Addr;         /*!< Buffer1 address pointer */
+
+    uint32_t Buffer2NextDescAddr; /*!< Buffer2 or next descriptor address pointer */
+
+    /*!< Enhanced Ethernet DMA PTP Descriptors */
+    uint32_t ExtendedStatus; /*!< Extended status for PTP receive descriptor */
+
+    uint32_t Reserved1;      /*!< Reserved */
+
+    uint32_t TimeStampLow;   /*!< Time Stamp Low value for transmit and receive */
+
+    uint32_t TimeStampHigh;  /*!< Time Stamp High value for transmit and receive */
+
 } ETH_DMADescTypeDef;
+
 /**
   *
   */
@@ -438,6 +458,32 @@ typedef struct
 
   uint32_t                    RxBuffLen;                 /*!< Provides the length of Rx buffers size */
 
+    uint32_t AutoNegotiation; /*!< Selects or not the AutoNegotiation mode for the external PHY
+                                   *       The AutoNegotiation allows an automatic setting of the Speed (10/100Mbps)
+                                   *       and the mode (half/full-duplex).
+                                   *       This parameter can be a value of @ref ETH_AutoNegotiation */
+
+    uint32_t Speed;           /*!< Sets the Ethernet speed: 10/100 Mbps.
+                                   *       This parameter can be a value of @ref ETH_Speed */
+
+    uint32_t DuplexMode;      /*!< Selects the MAC duplex mode: Half-Duplex or Full-Duplex mode
+                                   *       This parameter can be a value of @ref ETH_Duplex_Mode */
+
+    uint16_t PhyAddress;      /*!< Ethernet PHY address.
+                                   *       This parameter must be a number between Min_Data = 0 and Max_Data = 32 */
+
+
+    uint32_t RxMode;          /*!< Selects the Ethernet Rx mode: Polling mode, Interrupt mode.
+                                   *       This parameter can be a value of @ref ETH_Rx_Mode */
+
+    uint32_t ChecksumMode;    /*!< Selects if the checksum is check by hardware or by software.
+                                   *     This parameter can be a value of @ref ETH_Checksum_Mode */
+
+    //  uint8_t * MACAddr;        /*!< MAC Address of used Hardware: must be pointer on an array of 6 bytes */
+
+   //   uint32_t MediaInterface;  /*!< Selects the media-independent interface or the reduced media-independent interface. */
+                                   //     This parameter can be a value of @ref ETH_Media_Interface
+
 } ETH_InitTypeDef;
 /**
   *
@@ -513,76 +559,223 @@ typedef  void (*pETH_txPtpCallbackTypeDef)(uint32_t *buffer,
   *
   */
 
+
+/**
+ * @brief  Received Frame Informations structure definition
+ */
+typedef struct
+{
+    ETH_DMADescTypeDef * FSRxDesc; /*!< First Segment Rx Desc */
+
+    ETH_DMADescTypeDef * LSRxDesc; /*!< Last Segment Rx Desc */
+
+    uint32_t SegCount;             /*!< Segment count */
+
+    uint32_t length;               /*!< Frame length */
+
+    uint32_t buffer;               /*!< Frame buffer */
+} ETH_DMARxFrameInfos;
+
+
+
 /**
   * @brief  ETH Handle Structure definition
   */
+
 #if (USE_HAL_ETH_REGISTER_CALLBACKS == 1)
 typedef struct __ETH_HandleTypeDef
 #else
 typedef struct
-#endif /* USE_HAL_ETH_REGISTER_CALLBACKS */
+#endif // USE_HAL_ETH_REGISTER_CALLBACKS
 {
-  ETH_TypeDef                *Instance;                 /*!< Register base address       */
+  ETH_TypeDef                *Instance;                 //!< Register base address
 
-  ETH_InitTypeDef            Init;                      /*!< Ethernet Init Configuration */
+  ETH_InitTypeDef            Init;                      //!< Ethernet Init Configuration
 
-  ETH_TxDescListTypeDef      TxDescList;                /*!< Tx descriptor wrapper: holds all Tx descriptors list
-                                                            addresses and current descriptor index  */
+  ETH_TxDescListTypeDef      TxDescList;                //!< Tx descriptor wrapper: holds all Tx descriptors list
+                                                            // addresses and current descriptor index
 
-  ETH_RxDescListTypeDef      RxDescList;                /*!< Rx descriptor wrapper: holds all Rx descriptors list
-                                                            addresses and current descriptor index  */
+  ETH_RxDescListTypeDef      RxDescList;                //!< Rx descriptor wrapper: holds all Rx descriptors list
+                                                            // addresses and current descriptor index
 
 #ifdef HAL_ETH_USE_PTP
-  ETH_TimeStampTypeDef       TxTimestamp;               /*!< Tx Timestamp */
-#endif /* HAL_ETH_USE_PTP */
+  ETH_TimeStampTypeDef       TxTimestamp;               //!< Tx Timestamp
+#endif // HAL_ETH_USE_PTP
 
-  __IO HAL_ETH_StateTypeDef  gState;                   /*!< ETH state information related to global Handle management
-                                                              and also related to Tx operations. This parameter can
-                                                              be a value of @ref HAL_ETH_StateTypeDef */
+  __IO HAL_ETH_StateTypeDef  gState;                   //!< ETH state information related to global Handle management
+                                                              //and also related to Tx operations. This parameter can
+                                                              //be a value of @ref HAL_ETH_StateTypeDef
 
-  __IO uint32_t              ErrorCode;                 /*!< Holds the global Error code of the ETH HAL status machine
-                                                             This parameter can be a value of @ref ETH_Error_Code.*/
-
-  __IO uint32_t
-  DMAErrorCode;              /*!< Holds the DMA Rx Tx Error code when a DMA AIS interrupt occurs
-                                                             This parameter can be a combination of
-                                                             @ref ETH_DMA_Status_Flags */
+  __IO uint32_t              ErrorCode;                 //!< Holds the global Error code of the ETH HAL status machine
+                                                             //This parameter can be a value of @ref ETH_Error_Code.
 
   __IO uint32_t
-  MACErrorCode;              /*!< Holds the MAC Rx Tx Error code when a MAC Rx or Tx status interrupt occurs
-                                                             This parameter can be a combination of
-                                                             @ref ETH_MAC_Rx_Tx_Status */
+  DMAErrorCode;              //!< Holds the DMA Rx Tx Error code when a DMA AIS interrupt occurs
+                                                             //This parameter can be a combination of
+                                                            // @ref ETH_DMA_Status_Flags
 
-  __IO uint32_t              MACWakeUpEvent;            /*!< Holds the Wake Up event when the MAC exit the power down mode
-                                                             This parameter can be a value of
-                                                             @ref ETH_MAC_Wake_Up_Event */
+  __IO uint32_t
+  MACErrorCode;              // !< Holds the MAC Rx Tx Error code when a MAC Rx or Tx status interrupt occurs
+                                //                             This parameter can be a combination of
+                                  //                           @ref ETH_MAC_Rx_Tx_Status
 
-  __IO uint32_t              MACLPIEvent;               /*!< Holds the LPI event when the an LPI status interrupt occurs.
-                                                             This parameter can be a value of @ref ETHEx_LPI_Event */
+  __IO uint32_t              MACWakeUpEvent;            // !< Holds the Wake Up event when the MAC exit the power down mode
+                                                           //  This parameter can be a value of
+                                                           //  @ref ETH_MAC_Wake_Up_Event
 
-  __IO uint32_t              IsPtpConfigured;           /*!< Holds the PTP configuration status.
-                                                             This parameter can be a value of
-                                                             @ref ETH_PTP_Config_Status */
+  __IO uint32_t              MACLPIEvent;               // !< Holds the LPI event when the an LPI status interrupt occurs.
+                                                           //  This parameter can be a value of @ref ETHEx_LPI_Event
 
-#if (USE_HAL_ETH_REGISTER_CALLBACKS == 1)
+  __IO uint32_t              IsPtpConfigured;           // !< Holds the PTP configuration status.
+                                                           //  This parameter can be a value of
+                                                           //  @ref ETH_PTP_Config_Status
 
-  void (* TxCpltCallback)(struct __ETH_HandleTypeDef *heth);             /*!< ETH Tx Complete Callback */
-  void (* RxCpltCallback)(struct __ETH_HandleTypeDef *heth);            /*!< ETH Rx  Complete Callback     */
-  void (* ErrorCallback)(struct __ETH_HandleTypeDef *heth);             /*!< ETH Error Callback   */
-  void (* PMTCallback)(struct __ETH_HandleTypeDef *heth);               /*!< ETH Power Management Callback            */
-  void (* WakeUpCallback)(struct __ETH_HandleTypeDef *heth);            /*!< ETH Wake UP Callback   */
+  #if (USE_HAL_ETH_REGISTER_CALLBACKS == 1)
 
-  void (* MspInitCallback)(struct __ETH_HandleTypeDef *heth);             /*!< ETH Msp Init callback              */
-  void (* MspDeInitCallback)(struct __ETH_HandleTypeDef *heth);           /*!< ETH Msp DeInit callback            */
+  void (* TxCpltCallback)(struct __ETH_HandleTypeDef *heth);            //!< ETH Tx Complete Callback
+  void (* RxCpltCallback)(struct __ETH_HandleTypeDef *heth);            //!< ETH Rx  Complete Callback
+  void (* ErrorCallback)(struct __ETH_HandleTypeDef *heth);             //!< ETH Error Callback
+  void (* PMTCallback)(struct __ETH_HandleTypeDef *heth);               //!< ETH Power Management Callback
+  void (* WakeUpCallback)(struct __ETH_HandleTypeDef *heth);            //!< ETH Wake UP Callback
 
-#endif  /* USE_HAL_ETH_REGISTER_CALLBACKS */
+  void (* MspInitCallback)(struct __ETH_HandleTypeDef *heth);             //!< ETH Msp Init callback
+  void (* MspDeInitCallback)(struct __ETH_HandleTypeDef *heth);           //!< ETH Msp DeInit callback
 
-  pETH_rxAllocateCallbackTypeDef  rxAllocateCallback;  /*!< ETH Rx Get Buffer Function   */
-  pETH_rxLinkCallbackTypeDef      rxLinkCallback; /*!< ETH Rx Set App Data Function */
-  pETH_txFreeCallbackTypeDef      txFreeCallback;       /*!< ETH Tx Free Function         */
-  pETH_txPtpCallbackTypeDef       txPtpCallback;  /*!< ETH Tx Handle Ptp Function */
+  #endif  // USE_HAL_ETH_REGISTER_CALLBACKS
+
+  pETH_rxAllocateCallbackTypeDef  rxAllocateCallback;  //!< ETH Rx Get Buffer Function
+  pETH_rxLinkCallbackTypeDef      rxLinkCallback; //!< ETH Rx Set App Data Function
+  pETH_txFreeCallbackTypeDef      txFreeCallback;       //!< ETH Tx Free Function
+  pETH_txPtpCallbackTypeDef       txPtpCallback;  //!< ETH Tx Handle Ptp Function
+
+
+  //    ETH_TypeDef * Instance;           /*!< Register base address       */
+
+  //    ETH_InitTypeDef Init;             /*!< Ethernet Init Configuration */
+
+  uint32_t LinkStatus;              /*!< Ethernet link status        */
+
+  ETH_DMADescTypeDef * RxDesc;      /*!< Rx descriptor to Get        */
+
+  ETH_DMADescTypeDef * TxDesc;      /*!< Tx descriptor to Set        */
+
+  ETH_DMARxFrameInfos RxFrameInfos; /*!< last Rx frame infos         */
+
+  __IO HAL_ETH_StateTypeDef State;  /*!< ETH communication state     */
+
+  HAL_LockTypeDef Lock;             /*!< ETH Lock                    */
+
 
 } ETH_HandleTypeDef;
+
+
+/**
+ * @brief  ETH MAC Configuration Structure definition
+ */
+
+typedef struct
+{
+    uint32_t Watchdog;                 /*!< Selects or not the Watchdog timer
+                                            *       When enabled, the MAC allows no more then 2048 bytes to be received.
+                                            *       When disabled, the MAC can receive up to 16384 bytes.
+                                            *       This parameter can be a value of @ref ETH_Watchdog */
+
+    uint32_t Jabber;                   /*!< Selects or not Jabber timer
+                                            *       When enabled, the MAC allows no more then 2048 bytes to be sent.
+                                            *       When disabled, the MAC can send up to 16384 bytes.
+                                            *       This parameter can be a value of @ref ETH_Jabber */
+
+    uint32_t InterFrameGap;            /*!< Selects the minimum IFG between frames during transmission.
+                                            *       This parameter can be a value of @ref ETH_Inter_Frame_Gap */
+
+    uint32_t CarrierSense;             /*!< Selects or not the Carrier Sense.
+                                            *       This parameter can be a value of @ref ETH_Carrier_Sense */
+
+    uint32_t ReceiveOwn;               /*!< Selects or not the ReceiveOwn,
+                                            *       ReceiveOwn allows the reception of frames when the TX_EN signal is asserted
+                                            *       in Half-Duplex mode.
+                                            *       This parameter can be a value of @ref ETH_Receive_Own */
+
+    uint32_t LoopbackMode;             /*!< Selects or not the internal MAC MII Loopback mode.
+                                            *       This parameter can be a value of @ref ETH_Loop_Back_Mode */
+
+    uint32_t ChecksumOffload;          /*!< Selects or not the IPv4 checksum checking for received frame payloads' TCP/UDP/ICMP headers.
+                                            *       This parameter can be a value of @ref ETH_Checksum_Offload */
+
+    uint32_t RetryTransmission;        /*!< Selects or not the MAC attempt retries transmission, based on the settings of BL,
+                                            *       when a collision occurs (Half-Duplex mode).
+                                            *       This parameter can be a value of @ref ETH_Retry_Transmission */
+
+    uint32_t AutomaticPadCRCStrip;     /*!< Selects or not the Automatic MAC Pad/CRC Stripping.
+                                            *       This parameter can be a value of @ref ETH_Automatic_Pad_CRC_Strip */
+
+    uint32_t BackOffLimit;             /*!< Selects the BackOff limit value.
+                                            *       This parameter can be a value of @ref ETH_Back_Off_Limit */
+
+    uint32_t DeferralCheck;            /*!< Selects or not the deferral check function (Half-Duplex mode).
+                                           *       This parameter can be a value of @ref ETH_Deferral_Check */
+
+    uint32_t ReceiveAll;               /*!< Selects or not all frames reception by the MAC (No filtering).
+                                            *       This parameter can be a value of @ref ETH_Receive_All */
+
+    uint32_t SourceAddrFilter;         /*!< Selects the Source Address Filter mode.
+                                            *       This parameter can be a value of @ref ETH_Source_Addr_Filter */
+
+    uint32_t PassControlFrames;        /*!< Sets the forwarding mode of the control frames (including unicast and multicast PAUSE frames)
+                                            *       This parameter can be a value of @ref ETH_Pass_Control_Frames */
+
+    uint32_t BroadcastFramesReception; /*!< Selects or not the reception of Broadcast Frames.
+                                            *       This parameter can be a value of @ref ETH_Broadcast_Frames_Reception */
+
+    uint32_t DestinationAddrFilter;    /*!< Sets the destination filter mode for both unicast and multicast frames.
+                                           *       This parameter can be a value of @ref ETH_Destination_Addr_Filter */
+
+    uint32_t PromiscuousMode;          /*!< Selects or not the Promiscuous Mode
+                                            *       This parameter can be a value of @ref ETH_Promiscuous_Mode */
+
+    uint32_t MulticastFramesFilter;    /*!< Selects the Multicast Frames filter mode: None/HashTableFilter/PerfectFilter/PerfectHashTableFilter.
+                                            *       This parameter can be a value of @ref ETH_Multicast_Frames_Filter */
+
+    uint32_t UnicastFramesFilter;      /*!< Selects the Unicast Frames filter mode: HashTableFilter/PerfectFilter/PerfectHashTableFilter.
+                                            *       This parameter can be a value of @ref ETH_Unicast_Frames_Filter */
+
+    uint32_t HashTableHigh;            /*!< This field holds the higher 32 bits of Hash table.
+                                            *       This parameter must be a number between Min_Data = 0x0 and Max_Data = 0xFFFFFFFF */
+
+    uint32_t HashTableLow;             /*!< This field holds the lower 32 bits of Hash table.
+                                            *       This parameter must be a number between Min_Data = 0x0 and Max_Data = 0xFFFFFFFF  */
+
+    uint32_t PauseTime;                /*!< This field holds the value to be used in the Pause Time field in the transmit control frame.
+                                            *       This parameter must be a number between Min_Data = 0x0 and Max_Data = 0xFFFF */
+
+    uint32_t ZeroQuantaPause;          /*!< Selects or not the automatic generation of Zero-Quanta Pause Control frames.
+                                            *       This parameter can be a value of @ref ETH_Zero_Quanta_Pause */
+
+    uint32_t PauseLowThreshold;        /*!< This field configures the threshold of the PAUSE to be checked for
+                                            *       automatic retransmission of PAUSE Frame.
+                                            *       This parameter can be a value of @ref ETH_Pause_Low_Threshold */
+
+    uint32_t UnicastPauseFrameDetect;  /*!< Selects or not the MAC detection of the Pause frames (with MAC Address0
+                                            *       unicast address and unique multicast address).
+                                            *       This parameter can be a value of @ref ETH_Unicast_Pause_Frame_Detect */
+
+    uint32_t ReceiveFlowControl;       /*!< Enables or disables the MAC to decode the received Pause frame and
+                                            *       disable its transmitter for a specified time (Pause Time)
+                                            *       This parameter can be a value of @ref ETH_Receive_Flow_Control */
+
+    uint32_t TransmitFlowControl;      /*!< Enables or disables the MAC to transmit Pause frames (Full-Duplex mode)
+                                            *       or the MAC back-pressure operation (Half-Duplex mode)
+                                            *       This parameter can be a value of @ref ETH_Transmit_Flow_Control */
+
+    uint32_t VLANTagComparison;        /*!< Selects the 12-bit VLAN identifier or the complete 16-bit VLAN tag for
+                                            *       comparison and filtering.
+                                            *       This parameter can be a value of @ref ETH_VLAN_Tag_Comparison */
+
+    uint32_t VLANTagIdentifier;        /*!< Holds the VLAN tag identifier for receive frames */
+} ETH_MACInitTypeDef;
+
+
+
 /**
   *
   */

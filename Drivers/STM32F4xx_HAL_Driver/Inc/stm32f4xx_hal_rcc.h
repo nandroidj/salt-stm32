@@ -24,7 +24,8 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal_def.h"
+// #include "stm32f4xx_hal_def.h"
+#include "stm32f4xx.h"
 
 /* Include RCC HAL Extended module */
 /* (include on top of file since RCC structures are defined in extended file) */

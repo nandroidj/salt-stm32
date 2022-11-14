@@ -54,6 +54,9 @@ include_directories(
 
 Venía realizándose con *Ninja* hasta que se lanzó el comando `cmake --check-system-vars` y alteró el generador viendo por defecto a *Unix Makefiles*. En consecuencia, en Settings -> Build, Exec, Deployment -> CMake se modificó el campo *Generator* por *Unix Makefiles*.
 
+2. Se borran los archivos de `FreeRTOS_Plus_TCP/source/portable/NetworkInterface/STM32Fxx` ya que se encuentran en `Drivers/STM32F4xx_HAL_Driver/Inc/*.h`
+
+
 
 ## Próximos pasos
 

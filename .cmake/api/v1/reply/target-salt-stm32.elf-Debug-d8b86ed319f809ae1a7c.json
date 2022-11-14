@@ -29,7 +29,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 138,
+				"line" : 167,
 				"parent" : 0
 			},
 			{
@@ -41,19 +41,19 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 134,
+				"line" : 163,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 135,
+				"line" : 164,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 136,
+				"line" : 165,
 				"parent" : 0
 			},
 			{
@@ -95,7 +95,7 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 109,
+				"line" : 113,
 				"parent" : 0
 			},
 			{
@@ -257,6 +257,10 @@
 				},
 				{
 					"backtrace" : 13,
+					"path" : "/Users/nandroid/Desktop/salt/technical/salt-stm32/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/include"
+				},
+				{
+					"backtrace" : 13,
 					"path" : "/Users/nandroid/Desktop/salt/technical/salt-stm32/Utilities/logging"
 				},
 				{
@@ -303,14 +307,13 @@
 			},
 			"sourceIndexes" : 
 			[
-				5,
 				6,
 				7,
 				8,
 				9,
 				10,
 				11,
-				73,
+				12,
 				74,
 				75,
 				76,
@@ -331,22 +334,44 @@
 				91,
 				92,
 				93,
+				94,
+				95,
 				96,
+				97,
+				98,
+				99,
 				100,
 				101,
-				120,
-				121,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				118,
+				122,
 				123,
-				124,
-				125,
-				126,
-				127,
-				128,
-				130,
-				131,
-				132,
-				133,
-				134
+				142,
+				143,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				152,
+				153,
+				154,
+				155,
+				156
 			]
 		},
 		{
@@ -503,6 +528,10 @@
 				},
 				{
 					"backtrace" : 13,
+					"path" : "/Users/nandroid/Desktop/salt/technical/salt-stm32/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/include"
+				},
+				{
+					"backtrace" : 13,
 					"path" : "/Users/nandroid/Desktop/salt/technical/salt-stm32/Utilities/logging"
 				},
 				{
@@ -541,7 +570,7 @@
 			"language" : "ASM",
 			"sourceIndexes" : 
 			[
-				12
+				13
 			]
 		}
 	],
@@ -597,6 +626,11 @@
 				"backtrace" : 5,
 				"fragment" : "/Users/nandroid/Desktop/salt/technical/salt-stm32/STM32F429ZITX_FLASH.ld",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "Core/Inc/stm32f4xx_hal_eth_macros.h",
+				"role" : "flags"
 			}
 		],
 		"language" : "C"
@@ -619,10 +653,10 @@
 				2,
 				3,
 				4,
-				13,
+				5,
 				14,
 				15,
-				17,
+				16,
 				18,
 				19,
 				20,
@@ -643,7 +677,7 @@
 				35,
 				36,
 				37,
-				39,
+				38,
 				40,
 				41,
 				42,
@@ -676,45 +710,45 @@
 				69,
 				70,
 				71,
-				94,
-				95,
-				97,
-				98,
-				99,
-				102,
-				103,
-				104,
-				105,
-				106,
-				107,
-				108,
-				109,
-				110,
-				111,
-				112,
-				113,
-				114,
-				115,
+				72,
 				116,
 				117,
-				118,
 				119,
-				122,
-				129
+				120,
+				121,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				141,
+				144,
+				151
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				5,
 				6,
 				7,
 				8,
 				9,
 				10,
 				11,
-				73,
+				12,
 				74,
 				75,
 				76,
@@ -735,33 +769,55 @@
 				91,
 				92,
 				93,
+				94,
+				95,
 				96,
+				97,
+				98,
+				99,
 				100,
 				101,
-				120,
-				121,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				118,
+				122,
 				123,
-				124,
-				125,
-				126,
-				127,
-				128,
-				130,
-				131,
-				132,
-				133,
-				134
+				142,
+				143,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				152,
+				153,
+				154,
+				155,
+				156
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				12,
-				16,
-				38,
-				72,
-				135
+				13,
+				17,
+				39,
+				73,
+				157
 			]
 		}
 	],
@@ -785,6 +841,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "Core/Inc/stm32f4xx_hal_conf.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/stm32f4xx_hal_eth_macros.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1263,7 +1324,133 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_ARP.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_DHCP.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Cache.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Callback.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Networking.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Parser.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_ICMP.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_IP.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_IP_Timers.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_IP_Utils.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_Sockets.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_Stream_Buffer.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_IP.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Reception.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_State_Handling.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Transmission.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Utils.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_WIN.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_Tiny_TCP.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/FreeRTOS_UDP_IP.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx/NetworkInterface.c",
 			"sourceGroupIndex" : 1
 		},
 		{

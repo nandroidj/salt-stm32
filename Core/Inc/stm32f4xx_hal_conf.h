@@ -274,6 +274,7 @@
   * @brief Include module's header file
   */
 
+
 #ifdef HAL_RCC_MODULE_ENABLED
   #include "stm32f4xx_hal_rcc.h"
 #endif /* HAL_RCC_MODULE_ENABLED */
@@ -469,7 +470,6 @@
 #ifdef HAL_MMC_MODULE_ENABLED
  #include "stm32f4xx_hal_mmc.h"
 #endif /* HAL_MMC_MODULE_ENABLED */
-
 /* Exported macro ------------------------------------------------------------*/
 #ifdef  USE_FULL_ASSERT
 /**

@@ -51,9 +51,13 @@
 #include "NetworkInterface.h"
 #include "phyHandling.h"
 
-#include "stm32fxx_hal_eth.h"
+// #include "stm32f4xx_hal_eth.h"
+#include "stm32f4xx_hal_eth_macros.h"
+#include "stm32f4xx.h"
 
-/* ST includes. */
+
+/*
+ * ST includes.
 #if defined( STM32F7xx )
     #include "stm32f7xx_hal.h"
     #define CACHE_LINE_SIZE    32u
@@ -63,9 +67,10 @@
     #include "stm32f2xx_hal.h"
 #elif defined( STM32F1xx )
     #include "stm32f1xx_hal.h"
-#elif !defined( _lint ) /* Lint does not like an #error */
+#elif !defined( _lint ) // Lint does not like an #error
     #error What part?
-#endif /* if defined( STM32F7xx ) */
+#endif // if defined( STM32F7xx )
+ */
 
 
 /* Interrupt events to process.  Currently only the Rx event is processed
@@ -1079,9 +1084,12 @@ BaseType_t xSTM32_PhyRead( BaseType_t xAddress,
     HAL_StatusTypeDef xHALResult;
 
     xETH.Init.PhyAddress = xAddress;
-    xHALResult = HAL_ETH_ReadPHYRegister( &xETH, ( uint16_t ) xRegister, pulValue );
-    xETH.Init.PhyAddress = usPrevAddress;
 
+    //      xHALResult = HAL_ETH_ReadPHYRegister( &xETH, ( uint16_t ) xRegister, pulValue );
+
+  xETH.Init.PhyAddress = usPrevAddress;
+
+    /*
     if( xHALResult == HAL_OK )
     {
         xResult = 0;
@@ -1091,7 +1099,11 @@ BaseType_t xSTM32_PhyRead( BaseType_t xAddress,
         xResult = -1;
     }
 
+
     return xResult;
+     */
+
+    return 0;
 }
 /*-----------------------------------------------------------*/
 
@@ -1104,9 +1116,12 @@ BaseType_t xSTM32_PhyWrite( BaseType_t xAddress,
     HAL_StatusTypeDef xHALResult;
 
     xETH.Init.PhyAddress = xAddress;
-    xHALResult = HAL_ETH_WritePHYRegister( &xETH, ( uint16_t ) xRegister, ulValue );
+
+    //          xHALResult = HAL_ETH_WritePHYRegister( &xETH, ( uint16_t ) xRegister, ulValue );
+
     xETH.Init.PhyAddress = usPrevAddress;
 
+    /*
     if( xHALResult == HAL_OK )
     {
         xResult = 0;
@@ -1117,6 +1132,9 @@ BaseType_t xSTM32_PhyWrite( BaseType_t xAddress,
     }
 
     return xResult;
+     */
+
+    return 0;
 }
 /*-----------------------------------------------------------*/
 

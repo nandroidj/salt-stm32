@@ -72,8 +72,10 @@ endif ()
 
 include_directories(
         Core/Inc
+
         Drivers/STM32F4xx_HAL_Driver/Inc
         Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+
         Middlewares/Third_Party/FreeRTOS/Source/include
         Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
         Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
@@ -83,14 +85,16 @@ include_directories(
         coreMQTT/source/include
         coreMQTT/source/interface
         coreMQTT/test/cbmc/include
-
         coreMQTT/demo/
 
 
         FreeRTOS-Plus-TCP/source/include
+
         FreeRTOS-Plus-TCP/test/Coverity/ConfigFiles
         FreeRTOS-Plus-TCP/test/FreeRTOS-Kernel/portable/GCC/ARM_CM4F
         FreeRTOS-Plus-TCP/tools/CMock/vendor/unity/src
+        FreeRTOS-Plus-TCP/source/portable/NetworkInterface/include
+
 
         Utilities/logging
         Utilities/backoff_algorithm/source/include
@@ -108,28 +112,53 @@ include_directories(
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx)
 
+
 file(
         GLOB_RECURSE SOURCES
         "Core/*.*"
         "Middlewares/*.*"
         "Drivers/*.*"
 
+        "Drivers/STM32F4xx_HAL_Driver/Src/*.c"
+
         "coreMQTT/source/*.c"
 
         "Utilities/backoff_algorithm/source/backoff_algorithm.c"
         "Utilities/backoff_algorithm/test/unit-test/Unity/examples/example_1/src/ProductionCode2.h"
 
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_IP_Timers.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_IP_Utils.c"
         "FreeRTOS-Plus-TCP/source/FreeRTOS_Sockets.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_IP.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_ARP.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_DHCP.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Cache.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Callback.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Networking.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_DNS_Parser.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_ICMP.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_IP.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_Stream_Buffer.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Reception.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_State_Handling.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Transmission.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_Utils.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_TCP_WIN.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_Tiny_TCP.c"
+        "FreeRTOS-Plus-TCP/source/FreeRTOS_UDP_IP.c"
+
+        "FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx/NetworkInterface.c"
+
         "FreeRTOS-Plus-TCP/tools/CMock/vendor/unity/extras/fixture/src/unity_fixture.h"
 
         "network_transport/using_plaintext/using_plaintext.c"
         "network_transport/sockets_wrapper/cellular/sockets_wrapper.c"
 
-        # "FreeRTOS-Cellular-Interface/source/*.*"
 
 )
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F429ZITX_FLASH.ld)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F429ZITX_FLASH.ld Core/Inc/stm32f4xx_hal_eth_macros.h)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)
