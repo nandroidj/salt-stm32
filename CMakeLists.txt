@@ -99,12 +99,11 @@ include_directories(
         Utilities/logging
         Utilities/backoff_algorithm/source/include
 
-
         FreeRTOS-Cellular-Interface/source/include
         FreeRTOS-Cellular-Interface/source/include/common
         FreeRTOS-Cellular-Interface/source/include/private
-        FreeRTOS-Cellular-Interface/source/interface
         FreeRTOS-Cellular-Interface/test/unit-test
+        FreeRTOS-Cellular-Interface/source/interface
 
         network_transport/using_plaintext
         network_transport/sockets_wrapper/cellular
@@ -148,6 +147,8 @@ file(
         "FreeRTOS-Plus-TCP/source/FreeRTOS_Tiny_TCP.c"
         "FreeRTOS-Plus-TCP/source/FreeRTOS_UDP_IP.c"
 
+        "FreeRTOS-Cellular-Interface/source/interface/cellular_comm_interface.h"
+
         "FreeRTOS-Plus-TCP/source/portable/NetworkInterface/STM32Fxx/NetworkInterface.c"
 
         "FreeRTOS-Plus-TCP/tools/CMock/vendor/unity/extras/fixture/src/unity_fixture.h"
@@ -155,10 +156,9 @@ file(
         "network_transport/using_plaintext/using_plaintext.c"
         "network_transport/sockets_wrapper/cellular/sockets_wrapper.c"
 
-
 )
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F429ZITX_FLASH.ld Core/Inc/stm32f4xx_hal_eth_macros.h)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F429ZITX_FLASH.ld Core/Inc/stm32f4xx_hal_eth_macros.h Core/Src/custom_cellular_api.c)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)

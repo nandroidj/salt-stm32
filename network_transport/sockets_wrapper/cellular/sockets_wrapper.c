@@ -37,9 +37,9 @@
 #include "sockets_wrapper.h"
 
 /* FreeRTOS Cellular Library api includes. */
-// #include "cellular_config.h"
-// #include "cellular_config_defaults.h"
-// #include "cellular_api.h"
+#include "cellular_config.h"
+#include "cellular_config_defaults.h"
+#include "cellular_api.h"
 
 /* Configure logs for the functions in this file. */
 #include "logging_levels.h"
