@@ -69,7 +69,9 @@
     }
 #endif /* if __has_builtin( __builtin___strchr ) */
 
-char * strtok_r( char * restrict s, const char * restrict sep, char ** restrict lasts )
+char * strtok_r( char * restrict s,
+                 const char * restrict sep,
+                 char ** restrict lasts )
 {
     size_t offset = nondet_size_t();
 

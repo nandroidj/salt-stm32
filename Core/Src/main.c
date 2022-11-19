@@ -30,7 +30,6 @@
 #include "using_plaintext.h"
 #include "logging_stack.h"
 
-
 /*-----------------------------------------------------------*/
 /* Used by the pseudo random number generator. */
 static UBaseType_t ulNextRand;

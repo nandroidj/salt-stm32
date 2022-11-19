@@ -135,9 +135,7 @@ void testFalse(void)
 
 void testSingleStatement(void)
 {
-    int i;
-
-    for( i = 0; i < 2; i++)
+    for(int i = 0; i < 2; i++)
     {
         /* TEST_ASSERT_TRUE should expand to a single C statement, minus
          * the semicolon. This if-else will fail to compile otherwise. */

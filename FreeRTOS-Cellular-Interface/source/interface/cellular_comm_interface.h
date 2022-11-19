@@ -36,7 +36,7 @@
 #endif
 /* *INDENT-ON* */
 
-#include "../include/cellular_types.h"
+#include "cellular_types.h"
 
 /* Standard includes. */
 #include <stdint.h>

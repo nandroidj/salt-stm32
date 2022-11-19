@@ -39,7 +39,6 @@
 /* Includes for standard bool and int. */
 #include <stdbool.h>
 #include <stdint.h>
-#include "cellular_config_defaults.h"
 
 /**
  * @ingroup cellular_datatypes_paramstructs

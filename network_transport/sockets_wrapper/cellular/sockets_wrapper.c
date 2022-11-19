@@ -50,19 +50,23 @@
     #define LIBRARY_LOG_LEVEL    LOG_INFO
 #endif
 #include "logging_stack.h"
+
 #include "cellular_types.h"
-#include "cellular_api.h"
 
 /*-----------------------------------------------------------*/
 
 /* Cellular socket wrapper needs application provide the cellular handle and pdn context id. */
 /* User of cellular socket wrapper should provide this variable. */
 /* coverity[misra_c_2012_rule_8_6_violation] */
-extern CellularHandle_t CellularHandle;
+
+//extern CellularHandle_t CellularHandle;
+CellularHandle_t CellularHandle;
 
 /* User of cellular socket wrapper should provide this variable. */
 /* coverity[misra_c_2012_rule_8_6_violation] */
-extern uint8_t CellularSocketPdnContextId;
+
+// extern uint8_t CellularSocketPdnContextId;
+uint8_t CellularSocketPdnContextId;
 
 /*-----------------------------------------------------------*/
 

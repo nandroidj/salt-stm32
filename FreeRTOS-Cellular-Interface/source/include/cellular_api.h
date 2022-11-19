@@ -37,10 +37,15 @@
 /* *INDENT-ON* */
 
 /* IoT Cellular data types. */
-//#include "cellular_types.h"
+#include "cellular_types.h"
 
 /* Hardware interface. */
-#include "../interface/cellular_comm_interface.h"
+#include "cellular_comm_interface.h"
+
+
+//CellularHandle_t CellularHandle;
+//uint8_t CellularSocketPdnContextId;
+
 
 /**
  * @brief One time initialization function.

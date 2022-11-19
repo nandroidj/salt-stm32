@@ -256,7 +256,8 @@ __attribute__( ( aligned( 32 ) ) )
 #if defined( STM32F7xx )
     __attribute__( ( section( ".first_data" ) ) )
 #endif
-ETH_DMADescTypeDef DMARxDscrTab[ ETH_RXBUFNB ];
+static ETH_DMADescTypeDef DMARxDscrTab[ ETH_RXBUFNB ];
+static ETH_DMADescTypeDef DMATxDscrTab[ ETH_RXBUFNB ];
 
 #if ( ipconfigZERO_COPY_RX_DRIVER == 0 )
     /* Ethernet Receive Buffer */
@@ -268,7 +269,6 @@ __attribute__( ( aligned( 32 ) ) )
 #if defined( STM32F7xx )
     __attribute__( ( section( ".first_data" ) ) )
 #endif
-ETH_DMADescTypeDef DMATxDscrTab[ ETH_TXBUFNB ];
 
 #if ( ipconfigZERO_COPY_TX_DRIVER == 0 )
     /* Ethernet Transmit Buffer */
