@@ -132,3 +132,5 @@
 1	216	1668879101185712370	CMakeFiles/salt-stm32.elf.dir/network_transport/sockets_wrapper/cellular/sockets_wrapper.c.obj	d4dd82c76704da3b
 2	123	1668879212327331095	CMakeFiles/salt-stm32.elf.dir/network_transport/sockets_wrapper/cellular/sockets_wrapper.c.obj	d4dd82c76704da3b
 124	443	1668879212593834248	salt-stm32.elf	7beea05f756a5a0b
+2	391	1668882550768203618	CMakeFiles/salt-stm32.elf.dir/Core/Src/main.c.obj	ffce8f48d25712bb
+392	1053	1668882551387633680	salt-stm32.elf	7beea05f756a5a0b

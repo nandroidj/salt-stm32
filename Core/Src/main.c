@@ -1057,6 +1057,8 @@ int main(void)
   while (1)
   {
 
+      printf("HALO !");
+
       vStartSimpleMQTTDemo();
 
     /* USER CODE END WHILE */
